@@ -9,7 +9,10 @@ RUTA_SALIDA = "docs/data/resumen.json"
 
 def leer_ventas(ruta=RUTA_VENTAS):
     with open(ruta, newline="", encoding="utf-8") as archivo:
-        return list(csv.DictReader(archivo))
+        lector = csv.reader(archivo)
+        columnas = next(lector)
+        filas = list(lector)[1:]  # omitir el encabezado
+        return [dict(zip(columnas, fila)) for fila in filas]
 
 
 def importe(fila):
