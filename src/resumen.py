@@ -34,7 +34,7 @@ def total_general(ventas):
 
 def ticket_promedio(ventas):
     """Importe medio por operación (pregunta comercial 4)."""
-    return total_general(ventas) // len(ventas)
+    return round(total_general(ventas) / len(ventas), 2)
 
 
 def generar_resumen(ventas):
