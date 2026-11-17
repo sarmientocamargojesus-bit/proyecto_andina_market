@@ -32,3 +32,4 @@ flowchart LR
 | Fecha | Capítulo | Acción |
 |---|---|---|
 | 2026-11-17 | 05 | Línea base registrada |
+| 2026-11-17 | 09 | Primer push y edición remota del README |
