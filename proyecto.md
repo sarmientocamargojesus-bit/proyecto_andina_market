@@ -23,6 +23,7 @@ Un flujo sencillo y verificable: **CSV de ventas → script en Python → resume
 1. ¿Cuánto vende cada sede y cuánto suma el total?
 2. ¿Cuántas operaciones registra cada sede?
 3. ¿Qué productos aparecen en las ventas de cada sede?
+4. ¿Cuál es el ticket promedio (importe medio por operación)?
 
 ## Herramientas
 

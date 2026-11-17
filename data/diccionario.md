@@ -12,3 +12,7 @@
 **Campo calculado:** `importe = cantidad × precio_unitario` (no se guarda en el CSV, lo calcula `src/resumen.py`).
 
 Todos los registros son **ficticios**: no hay clientes, documentos de identidad, teléfonos ni direcciones.
+
+## Procedencia de los datos
+
+Los 12 registros fueron **inventados para el cuaderno de prácticas** (marzo de 2026, 4 por sede). No provienen de ningún sistema real ni de personas reales, por eso pueden publicarse en un repositorio público.
