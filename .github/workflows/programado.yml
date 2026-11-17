@@ -1,0 +1,17 @@
+name: Programado
+
+# Lunes 08:00 en Lima (UTC-5) = 13:00 UTC. Activo hasta la entrega del trabajo;
+# luego se desactiva en Actions → Programado → "..." → Disable workflow.
+on:
+  schedule:
+    - cron: "0 13 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  revision-semanal:
+    uses: ./.github/workflows/reutilizable.yml
+    with:
+      subir-artefacto: true

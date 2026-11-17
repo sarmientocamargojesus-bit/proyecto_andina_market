@@ -1,0 +1,36 @@
+name: Manual
+
+# Botón "Run workflow" en la pestaña Actions.
+on:
+  workflow_dispatch:
+    inputs:
+      sede:
+        description: "Sede a consultar"
+        type: choice
+        options: [Lima, Ica, Arequipa]
+        default: Lima
+
+permissions:
+  contents: read
+
+jobs:
+  consultar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Total de la sede elegida
+        env:
+          SEDE: ${{ inputs.sede }}
+        run: |
+          python - <<'PY' | tee -a "$GITHUB_STEP_SUMMARY"
+          import os, sys
+          sys.path.insert(0, "src")
+          import resumen
+          ventas = resumen.leer_ventas()
+          sede = os.environ["SEDE"]
+          print(f"Sede {sede}: S/ {resumen.total_por_sede(ventas)[sede]:.2f}")
+          print(f"Productos: {', '.join(resumen.productos_por_sede(ventas, sede))}")
+          PY

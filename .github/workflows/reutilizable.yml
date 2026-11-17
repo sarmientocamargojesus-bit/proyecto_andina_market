@@ -1,0 +1,42 @@
+name: Reutilizable · pruebas y resumen
+
+# Workflow reutilizable: otros workflows lo llaman con `uses:`.
+on:
+  workflow_call:
+    inputs:
+      python-version:
+        description: "Versión de Python"
+        type: string
+        default: "3.12"
+      subir-artefacto:
+        description: "Subir resumen.json como artefacto"
+        type: boolean
+        default: false
+    outputs:
+      total:
+        description: "Total general calculado"
+        value: ${{ jobs.resumen.outputs.total }}
+
+permissions:
+  contents: read
+
+jobs:
+  resumen:
+    runs-on: ubuntu-latest
+    outputs:
+      total: ${{ steps.total.outputs.total }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ inputs.python-version }}
+      - run: python -m unittest discover -s tests -v
+      - run: python src/resumen.py
+      - id: total
+        run: echo "total=$(python -c 'import json;print(json.load(open("docs/data/resumen.json"))["total_general"])')" >> "$GITHUB_OUTPUT"
+      - if: inputs.subir-artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: resumen-${{ github.run_number }}
+          path: docs/data/resumen.json
+          retention-days: 7

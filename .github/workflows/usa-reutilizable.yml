@@ -1,0 +1,23 @@
+name: Usa reutilizable
+
+on:
+  push:
+    branches: [main]
+    paths: ["data/**", "src/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  llamar:
+    uses: ./.github/workflows/reutilizable.yml
+    with:
+      python-version: "3.12"
+      subir-artefacto: true
+
+  informar:
+    needs: llamar
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Total general devuelto por el workflow reutilizable = S/ ${{ needs.llamar.outputs.total }}" | tee -a "$GITHUB_STEP_SUMMARY"
