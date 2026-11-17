@@ -171,3 +171,91 @@ Ran 12 tests in 0.001s
 
 OK
 ```
+
+## CAP33 · Git avanzado (copia local de laboratorio, nada se publica)
+
+### stash
+```console
+$ git stash push -m "nota a medias"
+Saved working directory and index state On main: nota a medias
+$ git stash list
+stash@{0}: On main: nota a medias
+$ git stash pop | tail -1
+Dropped refs/stash@{0} (c9e68e91e81e4759fa814fdbd9f316d57db54c5c)
+```
+
+### bisect: localizar automáticamente el commit que rompe las pruebas
+```console
+$ git log --oneline -7
+50d8bb3 docs: nota de laboratorio 5
+3cdef9f docs: nota de laboratorio 4
+15425a6 refactor: simplificar importe
+6ca85d4 docs: nota de laboratorio 3
+10b704a docs: nota de laboratorio 2
+fcebb80 docs: nota de laboratorio 1
+439db18 Merge pull request #35 from sarmientocamargojesus-bit/feature/api-codespaces
+$ export PYTHONDONTWRITEBYTECODE=1   # sin esto, un .pyc en caché puede dar un falso "good" (ver nota)
+$ git bisect start HEAD 439db18 | tail -1
+[6ca85d47947338228ef2501affece70d2022535a] docs: nota de laboratorio 3
+$ git bisect run python3 -m unittest discover -s tests 2>/dev/null | grep -A5 'is the first bad commit' | grep -v '^Date\|^Author\|^$'
+15425a6c35b221407842f953b8b843c95677076f is the first bad commit
+commit 15425a6c35b221407842f953b8b843c95677076f
+    refactor: simplificar importe
+$ git bisect reset 2>&1 | head -1
+Previous HEAD position was 15425a6 refactor: simplificar importe
+```
+
+> **Nota:** en el primer intento `bisect` señaló un commit equivocado. `*` y `+` tienen el mismo tamaño y bisect cambia de commit en el mismo segundo, así que Python reutilizó el `.pyc` en caché (se invalida por fecha y tamaño). Con `PYTHONDONTWRITEBYTECODE=1` (o `python -B`) el resultado es correcto.
+
+### revert del commit encontrado
+```console
+$ git revert --no-edit 15425a6 | head -1
+[main 4a10e11] Revert "refactor: simplificar importe"
+$ python3 -m unittest discover -s tests 2>&1 | tail -1
+OK
+```
+
+### cherry-pick -x: llevar una corrección puntual a otra rama
+```console
+$ git cherry-pick -x 6bf94e9 | head -1
+[main d9a89c4] docs: aclarar fórmula del importe
+$ git log -1 --format=%B | grep 'cherry picked'
+(cherry picked from commit 6bf94e922edf1f544e2a984c99a43c08ed558170)
+```
+
+### rebase -i (solo en esta copia local): unir las notas 1 a 3
+```console
+$ git log --oneline -9 | head -8
+d9a89c4 docs: aclarar fórmula del importe
+4a10e11 Revert "refactor: simplificar importe"
+50d8bb3 docs: nota de laboratorio 5
+3cdef9f docs: nota de laboratorio 4
+15425a6 refactor: simplificar importe
+6ca85d4 docs: nota de laboratorio 3
+10b704a docs: nota de laboratorio 2
+fcebb80 docs: nota de laboratorio 1
+$ git rebase -i 439db18   # en el editor: "fixup" para las notas 2 y 3
+$ git log --oneline -7
+f33fdd7 docs: aclarar fórmula del importe
+968d57d Revert "refactor: simplificar importe"
+f452c97 docs: nota de laboratorio 5
+f9c988a docs: nota de laboratorio 4
+cc9314e refactor: simplificar importe
+5333ec0 docs: nota de laboratorio 1
+439db18 Merge pull request #35 from sarmientocamargojesus-bit/feature/api-codespaces
+$ python3 -m unittest discover -s tests 2>&1 | tail -1
+OK
+```
+
+El `rebase -i` reescribe commits: se usa **solo** en ramas locales que nadie más tiene. En `main` publicado está prohibido (regla *Block force pushes*).
+
+### Hook `pre-commit` de pruebas
+```console
+$ cp scripts/hooks/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
+$ git commit -am "fix: cambio que rompe el importe"
+pre-commit: las pruebas fallan; commit cancelado.
+Ejecuta: python -m unittest discover -s tests -v
+(código de salida: 1)
+$ git commit -am "docs: nota válida"
+pre-commit: pruebas OK
+```
