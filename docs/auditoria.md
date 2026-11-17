@@ -41,7 +41,10 @@ Generada con `git log --first-parent --merges main`:
 ```console
 $ git bundle create andina.bundle main
 $ git bundle verify andina.bundle
-The bundle uses this hash algorithm: sha1
+andina.bundle is okay
+The bundle contains this ref:
+bc0c05cafdb6e9cc9284b9999b16c74497e4e8f9 refs/heads/main
+The bundle records a complete history.
 $ git clone andina.bundle desde-bundle -b main && cd desde-bundle
 $ python -m unittest discover -s tests
 OK
