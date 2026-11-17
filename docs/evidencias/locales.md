@@ -17,3 +17,25 @@ el parche se puede recuperar
 ```
 
 Se decidió no recuperar la línea porque era accidental; el parche demuestra que el cambio no se pierde si se guarda antes del `restore`.
+
+## CAP08 · Ramas
+
+```console
+$ git branch --merged main
+  feature/filtro-productos
+  feature/resumen-sedes
+  fix/encabezado-tablero
+* main
+$ git log --oneline --graph -6
+*   1eaeae1 Merge branch 'feature/filtro-productos'
+|\  
+| * 89a230b feat: filtrar productos por sede
+|/  
+* 38e3159 fix: corregir errata en el encabezado del tablero
+* f5a811b feat: agregar reporte por sede con título del tablero
+* e6112a1 docs: registrar diff, restore y parche (cap. 07)
+* 398f65f test: agregar test_importe_calculado
+$ git branch -d feature/resumen-sedes fix/encabezado-tablero feature/filtro-productos
+$ git branch
+* main
+```
