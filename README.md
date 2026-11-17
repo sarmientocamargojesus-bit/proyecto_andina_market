@@ -1,4 +1,4 @@
-# Andina Market 360
+# Andina Market 360 · Ventas por sede
 
 Resumen de ventas de una cadena **ficticia** de tiendas andinas (Lima, Ica y Arequipa), construido paso a paso con el cuaderno de prácticas Git y GitHub.
 
