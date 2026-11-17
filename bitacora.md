@@ -34,3 +34,4 @@ flowchart LR
 | 2026-11-17 | 05 | Línea base registrada |
 | 2026-11-17 | 09 | Primer push y edición remota del README |
 | 2026-11-17 | 09 | Push rechazado resuelto con fetch + merge |
+| 2026-11-17 | 10 | Conflicto de título resuelto; revert de sede Cusco; stash y reflog |

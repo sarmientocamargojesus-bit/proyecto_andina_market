@@ -72,3 +72,39 @@ $ git pull --no-rebase --no-edit   # fetch + merge, sin reescribir historial
 $ git push origin main
    26438a3..f00c9e4  main -> main
 ```
+
+## CAP10 · Conflicto, revert, stash y reflog
+
+```console
+$ git merge prueba/alternativa-a   # avance rápido
+$ git merge prueba/alternativa-b
+Auto-merging README.md
+CONFLICT (content): Merge conflict in README.md
+Automatic merge failed; fix conflicts and then commit the result.
+$ head -5 README.md
+<<<<<<< HEAD
+# Andina Market 360 · Tablero de ventas
+=======
+# Andina Market 360 · Ventas por sede
+>>>>>>> prueba/alternativa-b
+$ # se combinan ambas ideas en un solo título
+$ head -1 README.md
+# Andina Market 360 · Tablero de ventas por sede
+Deleted branch prueba/alternativa-a (was 6cd6478).
+Deleted branch prueba/alternativa-b (was 5246ad0).
+$ git revert --no-edit HEAD   # Cusco no es una sede del caso
+[main f68c89c] Revert "docs: agregar sede Cusco por error"
+$ git stash push -m "idea gráfico"
+Saved working directory and index state On main: idea gráfico
+$ git stash list
+stash@{0}: On main: idea gráfico
+$ git stash drop   # la idea se registrará como Issue en el cap. 13
+Dropped refs/stash@{0} (38815155132ee83b3734cc660c2c6e827c4b9510)
+$ git reflog -6
+f68c89c HEAD@{0}: reset: moving to HEAD
+f68c89c HEAD@{1}: revert: Revert "docs: agregar sede Cusco por error"
+1ff6eb4 HEAD@{2}: commit: docs: agregar sede Cusco por error
+7f4b74a HEAD@{3}: commit (merge): docs: resolver conflicto de título entre alternativas A y B
+6cd6478 HEAD@{4}: merge prueba/alternativa-a: Fast-forward
+13f664d HEAD@{5}: checkout: moving from prueba/alternativa-b to main
+```
