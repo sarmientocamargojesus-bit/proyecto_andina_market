@@ -41,7 +41,12 @@ def generar_resumen(ventas):
 
 
 def reporte_texto(resumen):
-    lineas = ["Tablero de ventas - Andina Market 360", ""]
+    sedes = ", ".join(resumen["total_por_sede"])
+    lineas = [
+        "Tablero de ventas - Andina Market 360",
+        f"Sedes: {sedes} · Fuente: data/ventas.csv (datos ficticios)",
+        "",
+    ]
     for sede, total in resumen["total_por_sede"].items():
         lineas.append(f"{sede:<10} S/ {total:>8.2f}")
     lineas.append(f"{'Total':<10} S/ {resumen['total_general']:>8.2f}")
