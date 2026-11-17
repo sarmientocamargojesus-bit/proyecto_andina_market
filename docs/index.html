@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Andina Market 360 · Tablero de ventas</title>
+  <meta name="description" content="Tablero de ventas por sede de Andina Market 360 (caso ficticio).">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="cabecera">
+    <h1>Andina Market 360</h1>
+    <p>Tablero de ventas por sede · datos ficticios del cuaderno de prácticas</p>
+    <nav aria-label="Secciones">
+      <a href="index.html" aria-current="page">Tablero</a>
+      <a href="productos.html">Productos</a>
+    </nav>
+  </header>
+
+  <main>
+    <section aria-labelledby="t-indicadores">
+      <h2 id="t-indicadores">Indicadores</h2>
+      <div class="tarjetas">
+        <article class="tarjeta"><h3>Total general</h3><p class="valor" id="total">—</p></article>
+        <article class="tarjeta"><h3>Operaciones</h3><p class="valor" id="operaciones">—</p></article>
+        <article class="tarjeta"><h3>Ticket promedio</h3><p class="valor" id="ticket">—</p></article>
+      </div>
+    </section>
+
+    <section aria-labelledby="t-grafico">
+      <h2 id="t-grafico">Ventas por sede</h2>
+      <div id="grafico" class="grafico" role="img" aria-label="Gráfico de barras de ventas por sede"></div>
+    </section>
+
+    <section aria-labelledby="t-sedes">
+      <h2 id="t-sedes">Sedes</h2>
+      <div class="sedes">
+        <article class="sede" id="sede-Lima"><h3>Lima</h3><p class="valor">—</p><p class="detalle">—</p></article>
+        <article class="sede" id="sede-Ica"><h3>Ica</h3><p class="valor">—</p><p class="detalle">—</p></article>
+        <article class="sede" id="sede-Arequipa"><h3>Arequipa</h3><p class="valor">—</p><p class="detalle">—</p></article>
+      </div>
+    </section>
+    <p id="estado" class="estado" role="status"></p>
+  </main>
+
+  <footer>Fuente: <code>data/ventas.csv</code> → <code>src/resumen.py</code> → <code>docs/data/resumen.json</code></footer>
+  <script src="app.js"></script>
+</body>
+</html>

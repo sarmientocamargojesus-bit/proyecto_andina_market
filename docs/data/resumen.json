@@ -1,0 +1,35 @@
+{
+  "operaciones": 12,
+  "total_por_sede": {
+    "Lima": 814.0,
+    "Ica": 555.0,
+    "Arequipa": 476.0
+  },
+  "total_general": 1845.0,
+  "ticket_promedio": 153.75,
+  "operaciones_por_sede": {
+    "Lima": 4,
+    "Ica": 4,
+    "Arequipa": 4
+  },
+  "productos_por_sede": {
+    "Lima": [
+      "Café orgánico",
+      "Chocolate 70%",
+      "Maca en polvo",
+      "Quinua blanca"
+    ],
+    "Ica": [
+      "Café orgánico",
+      "Chocolate 70%",
+      "Pallar seco",
+      "Quinua blanca"
+    ],
+    "Arequipa": [
+      "Café orgánico",
+      "Maca en polvo",
+      "Pallar seco",
+      "Quinua blanca"
+    ]
+  }
+}

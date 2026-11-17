@@ -38,3 +38,4 @@ flowchart LR
 | 2026-11-17 | 12 | README completo, manual, CONTRIBUTING y verificación de enlaces |
 | 2026-11-17 | 13 | Issues #1–#8, etiquetas, plantilla y guía de Projects |
 | 2026-11-17 | 14–16 | PR #9, #10, #11 y #12 (rojo→verde); guía de código abierto |
+| 2026-11-17 | 17–19 | Gobernanza, CHANGELOG, workflow de Release y sitio de Pages |
