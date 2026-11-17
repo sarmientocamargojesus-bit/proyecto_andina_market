@@ -1,0 +1,32 @@
+name: PR
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+permissions:
+  contents: read
+
+jobs:
+  revisar-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Título con formato "tipo: descripción"'
+        env:
+          TITULO: ${{ github.event.pull_request.title }}
+        run: |
+          echo "Título: $TITULO"
+          if echo "$TITULO" | grep -Eq '^(docs|feat|fix|test|data|ci|chore)(\(.+\))?: .+'; then
+            echo "Formato correcto"
+          else
+            echo "::error::El título debe empezar con docs:, feat:, fix:, test:, data:, ci: o chore:"
+            exit 1
+          fi
+      - name: Resumen del PR
+        env:
+          RAMA: ${{ github.head_ref }}
+          CAMBIOS: ${{ github.event.pull_request.changed_files }}
+        run: |
+          echo "### PR #${{ github.event.pull_request.number }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Rama: \`$RAMA\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Archivos cambiados: $CAMBIOS" >> "$GITHUB_STEP_SUMMARY"
