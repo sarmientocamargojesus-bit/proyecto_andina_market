@@ -32,11 +32,17 @@ def total_general(ventas):
     return round(sum(importe(fila) for fila in ventas), 2)
 
 
+def ticket_promedio(ventas):
+    """Importe medio por operación (pregunta comercial 4)."""
+    return total_general(ventas) // len(ventas)
+
+
 def generar_resumen(ventas):
     return {
         "operaciones": len(ventas),
         "total_por_sede": total_por_sede(ventas),
         "total_general": total_general(ventas),
+        "ticket_promedio": ticket_promedio(ventas),
     }
 
 
@@ -50,6 +56,7 @@ def reporte_texto(resumen):
     for sede, total in resumen["total_por_sede"].items():
         lineas.append(f"{sede:<10} S/ {total:>8.2f}")
     lineas.append(f"{'Total':<10} S/ {resumen['total_general']:>8.2f}")
+    lineas.append(f"{'Ticket':<10} S/ {resumen['ticket_promedio']:>8.2f}")
     return "\n".join(lineas)
 
 

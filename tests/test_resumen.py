@@ -31,6 +31,9 @@ class PruebasResumen(unittest.TestCase):
         reporte = resumen.reporte_texto(resumen.generar_resumen(VENTAS))
         self.assertIn("Sedes: Lima, Ica, Arequipa", reporte.splitlines()[1])
 
+    def test_ticket_promedio(self):
+        self.assertEqual(resumen.ticket_promedio(VENTAS), 153.75)
+
 
 if __name__ == "__main__":
     unittest.main()
