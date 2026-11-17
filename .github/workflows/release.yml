@@ -28,7 +28,5 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          adjuntos="proyecto_andina_market-${GITHUB_REF_NAME}.zip"
-          [ -f "release-extra/repositorio.bundle" ] && adjuntos="$adjuntos release-extra/repositorio.bundle"
-          gh release create "${GITHUB_REF_NAME}" $adjuntos \
+          gh release create "${GITHUB_REF_NAME}" "proyecto_andina_market-${GITHUB_REF_NAME}.zip" \
             --title "Andina Market 360 ${GITHUB_REF_NAME}" --notes-file notas.md --verify-tag
