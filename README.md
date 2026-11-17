@@ -28,3 +28,7 @@ docs/   documentación y sitio
 python src/resumen.py
 python -m unittest discover -s tests -v
 ```
+
+## Sedes
+
+Lima, Ica y Arequipa. Cada sede registra 4 operaciones en el periodo de prueba.
