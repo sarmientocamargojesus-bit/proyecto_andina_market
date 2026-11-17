@@ -21,7 +21,40 @@
 
 ## Ruta completa en verde (clon limpio)
 
-VERIFICACION_PENDIENTE
+Verificado en un clon recién descargado de GitHub (rama del PR final):
+
+```console
+$ git clone https://github.com/sarmientocamargojesus-bit/proyecto_andina_market.git && cd proyecto_andina_market
+$ python -m unittest discover -s tests
+Ran 12 tests in 0.001s
+
+OK
+$ python src/resumen.py | tail -5
+Lima       S/   814.00
+Ica        S/   555.00
+Arequipa   S/   476.00
+Total      S/  1845.00
+Ticket     S/   153.75
+$ git diff --exit-code docs/data/resumen.json && echo "JSON al día"
+JSON al día
+$ python scripts/humo.py
+CSV: S/ 1845.00 | docs/data/resumen.json: S/ 1845.00
+HUMO: OK
+$ python scripts/verificar_enlaces.py
+Enlaces relativos rotos: 0
+$ bash scripts/cumplimiento.sh
+✔ C1 Licencia MIT presente
+✔ C2 Gobernanza: SECURITY.md, CODEOWNERS y plantilla de PR
+✔ C3 .env ignorado y fuera del índice
+✔ C4 Historial sin secretos
+✔ C5 Pruebas unitarias en verde
+✔ C6 Humo: JSON publicado = CSV
+Cumplimiento: 6/6 controles
+$ (cd src && python resumen.py | tail -1)   # bug #2 corregido
+Ticket     S/   153.75
+```
+
+En GitHub, la misma ruta corre en cada PR (`ci.yml`: pruebas, JSON al día, enlaces y cumplimiento; matriz 3.11/3.12).
 
 ## Autoevaluación
 
