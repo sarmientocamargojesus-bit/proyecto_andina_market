@@ -11,6 +11,10 @@ VENTAS = resumen.leer_ventas(RAIZ / "data" / "ventas.csv")
 
 
 class PruebasResumen(unittest.TestCase):
+    def test_importe_calculado(self):
+        fila = {"cantidad": "4", "precio_unitario": "35.00"}
+        self.assertEqual(resumen.importe(fila), 140.00)
+
     def test_total_general(self):
         self.assertEqual(resumen.total_general(VENTAS), 1845.00)
 
