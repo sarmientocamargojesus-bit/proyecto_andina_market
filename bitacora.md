@@ -44,3 +44,4 @@ flowchart LR
 | 2026-11-17 | 29–31 | Issue y PR por API, guía gh; devcontainer; scripts de API, reintentos y HMAC |
 | 2026-11-17 | 32–33 | Función asistida por IA auditada; stash, bisect, cherry-pick -x, rebase -i local y hook pre-commit |
 | 2026-11-17 | 34 | Bug #2 corregido; push rechazado; CI rojo por dato alterado |
+| 2026-11-17 | 02, 03, 35 | Guías de cuenta y exploración; plantilla de README de perfil; portafolio y guion |
