@@ -142,3 +142,26 @@ $ python src/resumen.py | tail -2
 Total      S/  1845.00
 Ticket     S/   153.75
 ```
+
+## CAP31 · Scripts de API, reintentos y firma de webhook
+
+```console
+$ python scripts/api/leer_campos.py
+Estados: {'closed': 7, 'open': 2}
+Etiquetas: {'mejora': 5, 'bug': 1, 'documentación': 3}
+Abiertos:
+  #2 [Ventas] resumen.py falla si se ejecuta desde la carpeta src/
+  #32 Documentar equivalencias de GitHub CLI y la web
+$ python scripts/api/reintentos.py
+Intento 1 falló (HTTP 503); reintento en 0.10 s
+Intento 2 falló (HTTP 503); reintento en 0.20 s
+Caso 1: {'status': 200, 'llamadas': 3}
+Intento 1 falló (HTTP 503); reintento en 0.10 s
+Intento 2 falló (HTTP 503); reintento en 0.20 s
+Caso 2: Se agotaron los 3 intentos
+$ python scripts/api/webhook_hmac.py
+X-Hub-Signature-256: sha256=05e72b3e5a8be59a163c68b5d977ca40aa890d2a3bfb4b474a3433ec598cd773
+Firma correcta      -> True
+Cuerpo alterado     -> False
+Sin cabecera        -> False
+```

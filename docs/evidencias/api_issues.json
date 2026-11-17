@@ -1,0 +1,16 @@
+{
+  "fuente": "GET /repos/sarmientocamargojesus-bit/proyecto_andina_market/issues?state=all (repositorio público)",
+  "consultado": "2026-11-17T20:23:00Z",
+  "nota": "Guardado sin token ni datos personales: solo número, título, estado, etiquetas y fecha.",
+  "issues": [
+    {"number": 1, "title": "Gráfico de barras de ventas por sede", "state": "closed", "labels": ["mejora"], "created_at": "2026-11-17T20:03:08Z"},
+    {"number": 2, "title": "[Ventas] resumen.py falla si se ejecuta desde la carpeta src/", "state": "open", "labels": ["bug"], "created_at": "2026-11-17T20:03:35Z"},
+    {"number": 3, "title": "Confirmar la licencia del proyecto", "state": "closed", "labels": ["documentación"], "created_at": "2026-11-17T20:03:41Z"},
+    {"number": 4, "title": "Mostrar sedes y origen de los datos en el tablero", "state": "closed", "labels": ["mejora"], "created_at": "2026-11-17T20:03:48Z"},
+    {"number": 5, "title": "Calcular el ticket promedio", "state": "closed", "labels": ["mejora"], "created_at": "2026-11-17T20:03:55Z"},
+    {"number": 6, "title": "Agregar pruebas de los totales de Ica y Arequipa", "state": "closed", "labels": ["mejora"], "created_at": "2026-11-17T20:04:01Z"},
+    {"number": 7, "title": "Página de productos por sede", "state": "closed", "labels": ["mejora"], "created_at": "2026-11-17T20:04:07Z"},
+    {"number": 8, "title": "Proteger la rama main", "state": "closed", "labels": ["documentación"], "created_at": "2026-11-17T20:04:13Z"},
+    {"number": 32, "title": "Documentar equivalencias de GitHub CLI y la web", "state": "open", "labels": ["documentación"], "created_at": "2026-11-17T20:22:26Z"}
+  ]
+}
