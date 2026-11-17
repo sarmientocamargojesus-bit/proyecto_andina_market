@@ -1,0 +1,34 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*.*.*"]
+
+permissions:
+  contents: write
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Generar paquete ZIP desde el tag
+        run: |
+          git archive --format=zip --prefix="proyecto_andina_market-${GITHUB_REF_NAME}/" \
+            -o "proyecto_andina_market-${GITHUB_REF_NAME}.zip" "${GITHUB_REF_NAME}"
+          unzip -l "proyecto_andina_market-${GITHUB_REF_NAME}.zip" | tail -1
+      - name: Extraer notas del CHANGELOG
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          awk -v v="$version" '$0 ~ "^## \\[" v "\\]" {f=1; next} /^## \[/ {f=0} f' CHANGELOG.md > notas.md
+          cat notas.md
+      - name: Crear la Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          adjuntos="proyecto_andina_market-${GITHUB_REF_NAME}.zip"
+          [ -f "release-extra/repositorio.bundle" ] && adjuntos="$adjuntos release-extra/repositorio.bundle"
+          gh release create "${GITHUB_REF_NAME}" $adjuntos \
+            --title "Andina Market 360 ${GITHUB_REF_NAME}" --notes-file notas.md --verify-tag
