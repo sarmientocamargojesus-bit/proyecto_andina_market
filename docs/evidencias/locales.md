@@ -57,3 +57,18 @@ Fast-forward
 $ git status -sb
 ## main...origin/main
 ```
+
+### Push rechazado y resuelto sin `--force`
+
+Otro clon (`clon2`) subió un commit a la bitácora mientras aquí se trabajaba en las evidencias:
+
+```console
+$ git push origin main
+ ! [rejected]        main -> main (fetch first)
+hint: Updates were rejected because the remote contains work that you do not
+$ git pull --no-rebase --no-edit   # fetch + merge, sin reescribir historial
+ bitacora.md | 1 +
+ 1 file changed, 1 insertion(+)
+$ git push origin main
+   26438a3..f00c9e4  main -> main
+```
