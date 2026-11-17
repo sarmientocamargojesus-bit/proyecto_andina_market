@@ -108,3 +108,19 @@ f68c89c HEAD@{1}: revert: Revert "docs: agregar sede Cusco por error"
 6cd6478 HEAD@{4}: merge prueba/alternativa-a: Fast-forward
 13f664d HEAD@{5}: checkout: moving from prueba/alternativa-b to main
 ```
+
+## CAP20 · Paquete verificado en una copia limpia
+
+```console
+$ git archive --format=zip -o dist/paquete.zip HEAD
+$ unzip dist/paquete.zip -d /tmp/limpio && cd /tmp/limpio/proyecto_andina_market-main
+$ ls -a | head
+. .. .github .gitignore CHANGELOG.md CONTRIBUTING.md 
+$ python -m unittest discover -s tests
+Ran 6 tests in 0.000s
+
+OK
+$ python src/resumen.py | tail -2
+Total      S/  1845.00
+Ticket     S/   153.75
+```
