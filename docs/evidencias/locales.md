@@ -142,3 +142,14 @@ $ python src/resumen.py | tail -2
 Total      S/  1845.00
 Ticket     S/   153.75
 ```
+
+## CAP32 · Auditoría de la función asistida por IA
+
+```console
+$ python -c "from ia_v0 import ticket_por_sede; ticket_por_sede({\"total_por_sede\": {\"Cusco\": 100.0}, \"operaciones_por_sede\": {}})"
+KeyError: 'Cusco'
+$ python -m unittest discover -s tests
+Ran 12 tests in 0.001s
+
+OK
+```
