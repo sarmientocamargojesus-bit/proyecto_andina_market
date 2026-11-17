@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Hook pre-commit: no permite confirmar si las pruebas fallan.
+# Instalar (en cada clon):  cp scripts/hooks/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
+# Saltarlo en una emergencia: git commit --no-verify   (la CI lo volverá a comprobar)
+export PYTHONDONTWRITEBYTECODE=1
+if ! python3 -m unittest discover -s tests >/dev/null 2>&1; then
+  echo "pre-commit: las pruebas fallan; commit cancelado."
+  echo "Ejecuta: python -m unittest discover -s tests -v"
+  exit 1
+fi
+echo "pre-commit: pruebas OK"
