@@ -1,0 +1,14 @@
+version: 2
+updates:
+  # El proyecto solo usa la biblioteca estándar de Python: no hay requirements.txt.
+  # Se vigilan las acciones usadas en los workflows.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "08:00"
+      timezone: "America/Lima"
+    labels: ["dependencias"]
+    commit-message:
+      prefix: "ci"
