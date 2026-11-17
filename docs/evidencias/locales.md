@@ -82,11 +82,8 @@ Auto-merging README.md
 CONFLICT (content): Merge conflict in README.md
 Automatic merge failed; fix conflicts and then commit the result.
 $ head -5 README.md
-<<<<<<< HEAD
-# Andina Market 360 · Tablero de ventas
-=======
 # Andina Market 360 · Ventas por sede
->>>>>>> prueba/alternativa-b
+# Andina Market 360 · Tablero de ventas
 $ # se combinan ambas ideas en un solo título
 $ head -1 README.md
 # Andina Market 360 · Tablero de ventas por sede
@@ -164,4 +161,13 @@ X-Hub-Signature-256: sha256=05e72b3e5a8be59a163c68b5d977ca40aa890d2a3bfb4b474a34
 Firma correcta      -> True
 Cuerpo alterado     -> False
 Sin cabecera        -> False
+## CAP32 · Auditoría de la función asistida por IA
+
+```console
+$ python -c "from ia_v0 import ticket_por_sede; ticket_por_sede({\"total_por_sede\": {\"Cusco\": 100.0}, \"operaciones_por_sede\": {}})"
+KeyError: 'Cusco'
+$ python -m unittest discover -s tests
+Ran 12 tests in 0.001s
+
+OK
 ```
