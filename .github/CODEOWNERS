@@ -1,0 +1,9 @@
+# Responsable de todo el repositorio (los equipos ficticios del cuaderno
+# —@equipo-datos, @equipo-web— no existen en GitHub y se marcarían como error).
+*                   @sarmientocamargojesus-bit
+
+# Áreas del caso (mismo responsable en un repositorio de una sola persona)
+/data/              @sarmientocamargojesus-bit
+/src/               @sarmientocamargojesus-bit
+/docs/              @sarmientocamargojesus-bit
+/.github/           @sarmientocamargojesus-bit
