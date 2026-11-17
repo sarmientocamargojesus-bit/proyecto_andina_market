@@ -27,6 +27,10 @@ class PruebasResumen(unittest.TestCase):
             ["Café orgánico", "Chocolate 70%", "Pallar seco", "Quinua blanca"],
         )
 
+    def test_subtitulo_sedes(self):
+        reporte = resumen.reporte_texto(resumen.generar_resumen(VENTAS))
+        self.assertIn("Sedes: Lima, Ica, Arequipa", reporte.splitlines()[1])
+
 
 if __name__ == "__main__":
     unittest.main()
