@@ -36,3 +36,4 @@ flowchart LR
 | 2026-11-17 | 09 | Push rechazado resuelto con fetch + merge |
 | 2026-11-17 | 10 | Conflicto de título resuelto; revert de sede Cusco; stash y reflog |
 | 2026-11-17 | 12 | README completo, manual, CONTRIBUTING y verificación de enlaces |
+| 2026-11-17 | 13 | Issues #1–#8, etiquetas, plantilla y guía de Projects |

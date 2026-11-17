@@ -12,3 +12,4 @@
 | 10 | docs | Conflicto de título, revert, stash y reflog | `README.md` |
 | 11 | docs | Procedencia de datos, pregunta 4 y guía de interfaces | `data/diccionario.md`, `proyecto.md`, `docs/guias/` |
 | 12 | docs | README, manual, CONTRIBUTING y verificador de enlaces | `README.md`, `docs/manual.md`, `CONTRIBUTING.md` |
+| 13 | chore/docs | Plantilla de Issue, 8 Issues reales y guía de Projects | `.github/ISSUE_TEMPLATE/`, `docs/guias/projects.md` |
