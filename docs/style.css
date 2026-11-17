@@ -1,0 +1,33 @@
+/* Paleta con contraste ≥ 4.5:1 sobre el fondo (verificado en docs/accesibilidad.md) */
+:root {
+  --fondo: #ffffff;
+  --texto: #1f2933;      /* 14.76:1 sobre blanco */
+  --suave: #52606d;      /* 6.46:1 sobre blanco */
+  --marca: #8a3b12;      /* terracota, 7.73:1 sobre blanco */
+  --barra: #8a3b12;
+  --borde: #d9dee3;
+  --tarjeta: #f7f5f2;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; color: var(--texto); background: var(--fondo); line-height: 1.5; }
+.cabecera { padding: 1.5rem 1rem; border-bottom: 3px solid var(--marca); }
+.cabecera h1 { margin: 0; color: var(--marca); }
+.cabecera p { margin: .25rem 0 1rem; color: var(--suave); }
+nav a { margin-right: 1rem; color: var(--marca); font-weight: 600; }
+nav a[aria-current="page"] { text-decoration: none; border-bottom: 2px solid currentColor; }
+main { max-width: 960px; margin: 0 auto; padding: 1rem; }
+.tarjetas, .sedes { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+.tarjeta, .sede { background: var(--tarjeta); border: 1px solid var(--borde); border-radius: 8px; padding: 1rem; }
+.tarjeta h3, .sede h3 { margin: 0; font-size: 1rem; color: var(--suave); }
+.valor { margin: .25rem 0 0; font-size: 1.75rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.detalle { margin: 0; color: var(--suave); }
+.grafico { display: grid; gap: .75rem; }
+.fila { display: grid; grid-template-columns: 6rem 1fr 7rem; align-items: center; gap: .5rem; }
+.pista { background: var(--tarjeta); border-radius: 4px; height: 1.5rem; }
+.barra { background: var(--barra); height: 100%; border-radius: 4px; }
+.monto { text-align: right; font-variant-numeric: tabular-nums; }
+.tabla { width: 100%; border-collapse: collapse; }
+.tabla caption { text-align: left; color: var(--suave); margin-bottom: .5rem; }
+.tabla th, .tabla td { border-bottom: 1px solid var(--borde); padding: .5rem; text-align: left; }
+.estado { color: #9b1c1c; }
+footer { max-width: 960px; margin: 2rem auto; padding: 0 1rem; color: var(--suave); font-size: .9rem; }

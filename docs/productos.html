@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Andina Market 360 · Productos por sede</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="cabecera">
+    <h1>Andina Market 360</h1>
+    <p>Productos vendidos en cada sede · datos ficticios</p>
+    <nav aria-label="Secciones">
+      <a href="index.html">Tablero</a>
+      <a href="productos.html" aria-current="page">Productos</a>
+    </nav>
+  </header>
+  <main>
+    <h2>Productos por sede</h2>
+    <table class="tabla">
+      <caption>Productos distintos vendidos en cada sede</caption>
+      <thead>
+        <tr><th scope="col">Sede</th><th scope="col">Productos</th><th scope="col">Cantidad de productos</th></tr>
+      </thead>
+      <tbody id="productos"></tbody>
+    </table>
+    <p id="estado" class="estado" role="status"></p>
+  </main>
+  <footer>Fuente: <code>docs/data/resumen.json</code></footer>
+  <script src="app.js"></script>
+</body>
+</html>

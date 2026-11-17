@@ -23,6 +23,13 @@ def total_por_sede(ventas):
     return totales
 
 
+def operaciones_por_sede(ventas):
+    conteo = {}
+    for fila in ventas:
+        conteo[fila["sede"]] = conteo.get(fila["sede"], 0) + 1
+    return conteo
+
+
 def productos_por_sede(ventas, sede):
     """Lista ordenada de productos vendidos en una sede (pregunta comercial 3)."""
     return sorted({fila["producto"] for fila in ventas if fila["sede"] == sede})
@@ -43,6 +50,10 @@ def generar_resumen(ventas):
         "total_por_sede": total_por_sede(ventas),
         "total_general": total_general(ventas),
         "ticket_promedio": ticket_promedio(ventas),
+        "operaciones_por_sede": operaciones_por_sede(ventas),
+        "productos_por_sede": {
+            sede: productos_por_sede(ventas, sede) for sede in total_por_sede(ventas)
+        },
     }
 
 
