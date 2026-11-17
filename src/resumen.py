@@ -23,6 +23,11 @@ def total_por_sede(ventas):
     return totales
 
 
+def productos_por_sede(ventas, sede):
+    """Lista ordenada de productos vendidos en una sede (pregunta comercial 3)."""
+    return sorted({fila["producto"] for fila in ventas if fila["sede"] == sede})
+
+
 def total_general(ventas):
     return round(sum(importe(fila) for fila in ventas), 2)
 
