@@ -24,6 +24,10 @@ jobs:
         run: python src/resumen.py
       - name: Verificar enlaces de la documentación
         run: python scripts/verificar_enlaces.py
+      - name: Controles de cumplimiento
+        run: |
+          git fetch --unshallow --quiet || true
+          bash scripts/cumplimiento.sh
 
   matriz:
     name: matriz (Python ${{ matrix.python-version }})

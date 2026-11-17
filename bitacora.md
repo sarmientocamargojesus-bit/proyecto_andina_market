@@ -40,3 +40,4 @@ flowchart LR
 | 2026-11-17 | 14–16 | PR #9, #10, #11 y #12 (rojo→verde); guía de código abierto |
 | 2026-11-17 | 17–19 | Gobernanza, CHANGELOG, workflow de Release y sitio de Pages |
 | 2026-11-17 | 20–23 | Paquetes fuera del historial; CI ampliado y pr.yml; pruebas Ica/Arequipa; fallo controlado en PR #21; Pages con needs y humo |
+| 2026-11-17 | 24–28 | Workflows avanzados; seguridad; dependabot; cumplimiento 6/6; auditoría; organización documental |
