@@ -126,3 +126,19 @@ texto / tarjeta              13.56:1
 mensaje de error / fondo      8.15:1
 Mínimo: 5.93:1 (requerido ≥ 4.5:1)
 ```
+
+## CAP20 · Paquete verificado en una copia limpia
+
+```console
+$ git archive --format=zip -o dist/paquete.zip HEAD
+$ unzip dist/paquete.zip -d /tmp/limpio && cd /tmp/limpio/proyecto_andina_market-main
+$ ls -a | head
+. .. .github .gitignore CHANGELOG.md CONTRIBUTING.md 
+$ python -m unittest discover -s tests
+Ran 6 tests in 0.000s
+
+OK
+$ python src/resumen.py | tail -2
+Total      S/  1845.00
+Ticket     S/   153.75
+```

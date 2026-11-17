@@ -8,3 +8,8 @@ __pycache__/
 
 # Temporales
 *.tmp
+
+# Paquetes generados (se publican como adjuntos de una Release, no como commit)
+dist/
+*.zip
+*.bundle
