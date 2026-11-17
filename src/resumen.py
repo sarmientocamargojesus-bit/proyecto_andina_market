@@ -3,8 +3,10 @@ import csv
 import json
 from pathlib import Path
 
-RUTA_VENTAS = "data/ventas.csv"
-RUTA_SALIDA = "docs/data/resumen.json"
+# Rutas relativas al archivo, no al directorio desde el que se ejecuta (Issue #2)
+RAIZ = Path(__file__).resolve().parents[1]
+RUTA_VENTAS = RAIZ / "data" / "ventas.csv"
+RUTA_SALIDA = RAIZ / "docs" / "data" / "resumen.json"
 
 
 def leer_ventas(ruta=RUTA_VENTAS):
@@ -73,7 +75,7 @@ def reporte_texto(resumen):
 
 def main():
     resumen = generar_resumen(leer_ventas())
-    Path(RUTA_SALIDA).parent.mkdir(parents=True, exist_ok=True)
+    RUTA_SALIDA.parent.mkdir(parents=True, exist_ok=True)
     with open(RUTA_SALIDA, "w", encoding="utf-8") as salida:
         json.dump(resumen, salida, ensure_ascii=False, indent=2)
     print(reporte_texto(resumen))
