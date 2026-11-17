@@ -35,12 +35,20 @@ def generar_resumen(ventas):
     }
 
 
+def reporte_texto(resumen):
+    lineas = ["Tablero de vetnas - Andina Market 360", ""]
+    for sede, total in resumen["total_por_sede"].items():
+        lineas.append(f"{sede:<10} S/ {total:>8.2f}")
+    lineas.append(f"{'Total':<10} S/ {resumen['total_general']:>8.2f}")
+    return "\n".join(lineas)
+
+
 def main():
     resumen = generar_resumen(leer_ventas())
     Path(RUTA_SALIDA).parent.mkdir(parents=True, exist_ok=True)
     with open(RUTA_SALIDA, "w", encoding="utf-8") as salida:
         json.dump(resumen, salida, ensure_ascii=False, indent=2)
-    print(json.dumps(resumen, ensure_ascii=False, indent=2))
+    print(reporte_texto(resumen))
 
 
 if __name__ == "__main__":
