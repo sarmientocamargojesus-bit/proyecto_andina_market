@@ -259,3 +259,65 @@ Ejecuta: python -m unittest discover -s tests -v
 $ git commit -am "docs: nota válida"
 pre-commit: pruebas OK
 ```
+## CAP34 · Solución de problemas
+
+### Bug #2: ejecutar desde `src/`
+```console
+$ cd src && python resumen.py   # antes
+FileNotFoundError: [Errno 2] No such file or directory: 'data/ventas.csv'
+$ cd src && python resumen.py   # después de usar Path(__file__)
+Total      S/  1845.00
+Ticket     S/   153.75
+$ cd /tmp && python <repo>/src/resumen.py | tail -1
+Ticket     S/   153.75
+```
+
+### Push rechazado → fetch + merge (sin `--force`)
+```console
+$ git push
+ ! [rejected]        fix/ruta-resumen -> fix/ruta-resumen (fetch first)
+hint: Updates were rejected because the remote contains work that you do not
+$ git fetch origin && git merge --no-edit origin/fix/ruta-resumen
+ 1 file changed, 7 insertions(+)
+ create mode 100644 bitacora_fallos.md
+$ git push
+   1cc3ac3..4fc8e94  fix/ruta-resumen -> fix/ruta-resumen
+```
+
+### HEAD *detached*
+```console
+$ git checkout HEAD~2
+You are in 'detached HEAD' state. You can look around, make experimental
+Turn off this advice by setting config variable advice.detachedHead to false
+HEAD is now at 968d57d Revert "refactor: simplificar importe"
+$ git status | head -1
+HEAD detached at 968d57d
+$ git commit -am "docs: commit hecho sin rama"   # queda "colgando"
+$ git switch -c rescate   # se le da una rama antes de salir para no perderlo
+Switched to a new branch 'rescate'
+$ git log --oneline -1
+a9cd92b docs: commit hecho sin rama
+```
+
+### Página desactualizada frente al JSON regenerado
+```console
+$ # con el precio alterado en data/ventas.csv (fila 1), se regenera el resumen
+$ python src/resumen.py && git diff --stat docs/data/resumen.json
+docs/data/resumen.json | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+```
+
+El JSON que publica la página ya no coincide con los datos: si `git diff` muestra cambios, el sitio está desactualizado: se regenera el JSON, se hace commit y el workflow de Pages lo publica. Para que no vuelva a ocurrir, la CI ahora ejecuta `git diff --exit-code docs/data/resumen.json` después de generar el resumen.
+
+### CI en rojo por un dato alterado
+```console
+$ git log --oneline -1 -- data/ventas.csv
+3777bd7 data: actualizar precio de café en Lima
+$ git diff HEAD~1 -- data/ventas.csv | grep "^[-+]1,"
+-1,2026-03-02,Lima,Café orgánico,4,35.00
++1,2026-03-02,Lima,Café orgánico,4,3.50
+# CI: Ran 12 tests … FAILED (failures=4) — ejecución 44169601119
+$ git restore --source=origin/main -- data/ventas.csv
+$ python -m unittest discover -s tests 2>&1 | tail -1
+OK
+```

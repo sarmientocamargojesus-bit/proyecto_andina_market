@@ -22,6 +22,8 @@ jobs:
         run: python -m unittest discover -s tests -v
       - name: Generar el resumen
         run: python src/resumen.py
+      - name: El JSON publicado está al día con los datos
+        run: git diff --exit-code docs/data/resumen.json
       - name: Verificar enlaces de la documentación
         run: python scripts/verificar_enlaces.py
       - name: Controles de cumplimiento
