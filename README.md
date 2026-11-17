@@ -2,6 +2,8 @@
 
 Resumen de ventas de una cadena **ficticia** de tiendas andinas (Lima, Ica y Arequipa), construido paso a paso con el cuaderno de prácticas Git y GitHub.
 
+Repositorio: https://github.com/sarmientocamargojesus-bit/proyecto_andina_market
+
 ## Problema
 
 La gerencia no tiene una vista única de las ventas de sus tres sedes.
