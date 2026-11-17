@@ -34,4 +34,3 @@ python -m unittest discover -s tests -v
 ## Sedes
 
 Lima, Ica y Arequipa. Cada sede registra 4 operaciones en el periodo de prueba.
-Sede de prueba: Cusco
