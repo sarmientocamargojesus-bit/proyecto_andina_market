@@ -34,6 +34,18 @@ class PruebasResumen(unittest.TestCase):
     def test_ticket_promedio(self):
         self.assertEqual(resumen.ticket_promedio(VENTAS), 153.75)
 
+    def test_total_ica(self):
+        self.assertEqual(resumen.total_por_sede(VENTAS)["Ica"], 555.00)
+
+    def test_total_arequipa(self):
+        self.assertEqual(resumen.total_por_sede(VENTAS)["Arequipa"], 476.00)
+
+    def test_operaciones_por_sede(self):
+        self.assertEqual(
+            resumen.operaciones_por_sede(VENTAS),
+            {"Lima": 4, "Ica": 4, "Arequipa": 4},
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
