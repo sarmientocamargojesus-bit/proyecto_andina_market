@@ -11,7 +11,7 @@ jobs:
   revisar-pr:
     runs-on: ubuntu-latest
     steps:
-      - name: Título con formato "tipo: descripción"
+      - name: 'Título con formato "tipo: descripción"'
         env:
           TITULO: ${{ github.event.pull_request.title }}
         run: |
