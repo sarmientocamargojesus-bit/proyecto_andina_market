@@ -39,3 +39,21 @@ $ git branch -d feature/resumen-sedes fix/encabezado-tablero feature/filtro-prod
 $ git branch
 * main
 ```
+
+## CAP09 · Remotos: fetch frente a pull
+
+El README se editó de forma remota en GitHub (commit `97ff3bd`). Luego, en local:
+
+```console
+$ git fetch origin
+$ git status -sb   # fetch descarga pero NO cambia los archivos
+## main...origin/main [behind 1]
+$ git log --oneline main..origin/main
+97ff3bd docs: agregar repositorio en GitHub al README (edición remota, cap. 09)
+$ git pull --ff-only
+Fast-forward
+ README.md | 2 ++
+ 1 file changed, 2 insertions(+)
+$ git status -sb
+## main...origin/main
+```
