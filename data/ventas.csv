@@ -1,0 +1,13 @@
+id,fecha,sede,producto,cantidad,precio_unitario
+1,2026-03-02,Lima,Café orgánico,4,35.00
+2,2026-03-03,Lima,Quinua blanca,6,18.00
+3,2026-03-05,Lima,Chocolate 70%,12,22.50
+4,2026-03-06,Lima,Maca en polvo,8,37.00
+5,2026-03-02,Ica,Café orgánico,3,35.00
+6,2026-03-04,Ica,Quinua blanca,5,18.00
+7,2026-03-05,Ica,Chocolate 70%,8,22.50
+8,2026-03-07,Ica,Pallar seco,15,12.00
+9,2026-03-03,Arequipa,Maca en polvo,4,37.00
+10,2026-03-04,Arequipa,Café orgánico,2,35.00
+11,2026-03-06,Arequipa,Quinua blanca,7,18.00
+12,2026-03-07,Arequipa,Pallar seco,11,12.00
