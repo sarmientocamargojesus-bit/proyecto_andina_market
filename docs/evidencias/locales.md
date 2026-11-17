@@ -108,3 +108,21 @@ f68c89c HEAD@{1}: revert: Revert "docs: agregar sede Cusco por error"
 6cd6478 HEAD@{4}: merge prueba/alternativa-a: Fast-forward
 13f664d HEAD@{5}: checkout: moving from prueba/alternativa-b to main
 ```
+
+## CAP19 · Prueba local del sitio en una subcarpeta (como GitHub Pages)
+
+```console
+$ python -m http.server  # sirviendo docs/ en /proyecto_andina_market/
+$ node prueba_sitio.js   # Chromium headless (Playwright)
+total: S/ 1845.00 | ticket: S/ 153.75 | Ica: S/ 555.00 | estado: ""
+filas productos: 3
+absoluta /data/resumen.json -> 404 | relativa data/resumen.json -> 200
+$ python scripts/contraste.py
+texto / fondo                14.76:1
+texto suave / fondo           6.46:1
+marca / fondo                 7.73:1
+texto suave / tarjeta         5.93:1
+texto / tarjeta              13.56:1
+mensaje de error / fondo      8.15:1
+Mínimo: 5.93:1 (requerido ≥ 4.5:1)
+```
