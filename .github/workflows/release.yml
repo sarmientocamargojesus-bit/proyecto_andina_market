@@ -1,32 +1,38 @@
 name: Release
 
+# La Release (y su tag) la crea una persona en GitHub:
+#   Releases → Draft a new release → tag vX.Y.Z → Publish release
+# o desde su equipo con: git tag -a vX.Y.Z -m "..." && git push origin vX.Y.Z
+# Este workflow verifica el tag y adjunta los paquetes generados desde él.
 on:
-  push:
-    tags: ["v*.*.*"]
+  release:
+    types: [published]
 
 permissions:
   contents: write
 
 jobs:
-  publicar:
+  adjuntar:
     runs-on: ubuntu-latest
+    env:
+      TAG: ${{ github.event.release.tag_name }}
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Generar paquete ZIP desde el tag
+      - name: Ejecutar pruebas sobre el tag
+        run: python -m unittest discover -s tests -v
+      - name: Generar ZIP (git archive) y bundle verificado
         run: |
-          git archive --format=zip --prefix="proyecto_andina_market-${GITHUB_REF_NAME}/" \
-            -o "proyecto_andina_market-${GITHUB_REF_NAME}.zip" "${GITHUB_REF_NAME}"
-          unzip -l "proyecto_andina_market-${GITHUB_REF_NAME}.zip" | tail -1
-      - name: Extraer notas del CHANGELOG
-        run: |
-          version="${GITHUB_REF_NAME#v}"
-          awk -v v="$version" '$0 ~ "^## \\[" v "\\]" {f=1; next} /^## \[/ {f=0} f' CHANGELOG.md > notas.md
-          cat notas.md
-      - name: Crear la Release
+          git archive --format=zip --prefix="proyecto_andina_market-${TAG}/" \
+            -o "proyecto_andina_market-${TAG}.zip" "${TAG}"
+          git bundle create "proyecto_andina_market-${TAG}.bundle" --all
+          git bundle verify "proyecto_andina_market-${TAG}.bundle"
+          sha256sum proyecto_andina_market-${TAG}.* > SHA256SUMS.txt
+          cat SHA256SUMS.txt
+      - name: Adjuntar a la Release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "${GITHUB_REF_NAME}" "proyecto_andina_market-${GITHUB_REF_NAME}.zip" \
-            --title "Andina Market 360 ${GITHUB_REF_NAME}" --notes-file notas.md --verify-tag
+          gh release upload "${TAG}" \
+            "proyecto_andina_market-${TAG}.zip" "proyecto_andina_market-${TAG}.bundle" SHA256SUMS.txt --clobber
