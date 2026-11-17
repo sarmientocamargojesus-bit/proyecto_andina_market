@@ -35,7 +35,7 @@ jobs:
       - id: total
         run: echo "total=$(python -c 'import json;print(json.load(open("docs/data/resumen.json"))["total_general"])')" >> "$GITHUB_OUTPUT"
       - if: inputs.subir-artefacto
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: resumen-${{ github.run_number }}
           path: docs/data/resumen.json

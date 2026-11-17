@@ -41,7 +41,7 @@ jobs:
       - run: python src/resumen.py
       - name: Guardar resumen.json como artefacto (7 días)
         if: matrix.python-version == '3.12'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: resumen-json
           path: docs/data/resumen.json
