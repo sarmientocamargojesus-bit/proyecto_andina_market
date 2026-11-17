@@ -21,6 +21,12 @@ class PruebasResumen(unittest.TestCase):
     def test_total_lima(self):
         self.assertEqual(resumen.total_por_sede(VENTAS)["Lima"], 814.00)
 
+    def test_productos_ica(self):
+        self.assertEqual(
+            resumen.productos_por_sede(VENTAS, "Ica"),
+            ["Café orgánico", "Chocolate 70%", "Pallar seco", "Quinua blanca"],
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
